@@ -1,4 +1,5 @@
-import {useState} from 'react'
+import { stringify } from 'postcss';
+import {useState, useEffect} from 'react'
 import {ToDoForm} from './ToDoForm'
 import {ToDoList} from './ToDoList'
 
@@ -6,12 +7,24 @@ function App() {
   const [toDoList, setToDoList] = useState([]);
   const [toDo, setToDo] = useState("");
 
-  const handleChange = (e) => {
-    setToDo(e);
-  }
+  useEffect(() => {    
+    // Update the document title using the browser API   
+    let buff = localStorage.getItem('toDoList')
+    setToDoList( buff === null ? [] : JSON.parse(buff) ) 
+  }, []);
+
+  useEffect(() => {    
+    // Update the document title using the browser API   
+    localStorage.setItem('toDoList', JSON.stringify(toDoList))
+  }, [toDoList]);
+
   const addToDo = () => {
     setToDoList([...toDoList, toDo])
     setToDo("");
+  }
+
+  const handleChange = (e) => {
+    setToDo(e);
   }
 
   const editToDo = (index, editedToDo) => {
