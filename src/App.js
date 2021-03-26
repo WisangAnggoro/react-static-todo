@@ -1,4 +1,3 @@
-import { stringify } from 'postcss';
 import {useState, useEffect} from 'react'
 import {ToDoForm} from './ToDoForm'
 import {ToDoList} from './ToDoList'
