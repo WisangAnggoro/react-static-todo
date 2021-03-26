@@ -13,7 +13,16 @@ export function ToDoList(props) {
               {e}
             </div>
             <div className="hover:text-yellow-600 cursor-pointer text-center">
-              <FaEdit />
+              <FaEdit 
+                onClick={(f) => {
+                  f.preventDefault()
+                  let editedToDo = prompt(`Edit "${e}"?`)
+                  if(editedToDo !== null)
+                  {
+                    props.editToDo(index, editedToDo)
+                  }
+                }}
+              />
             </div>
             <div className="text-center hover:text-red-600 cursor-pointer">
               <FaCross

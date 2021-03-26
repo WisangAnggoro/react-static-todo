@@ -14,7 +14,15 @@ function App() {
     setToDo("");
   }
 
-  const removeToDo = e => {
+  const editToDo = (index, editedToDo) => {
+    setToDoList([
+      ...toDoList.slice(0,index),
+      editedToDo,
+      ...toDoList.slice(index+1)
+    ]);
+  }
+
+  const removeToDo = (e) => {
     setToDoList(toDoList.filter((f,index) => index!==e));
   }
 
@@ -35,6 +43,7 @@ function App() {
             />
             <ToDoList
               toDoList = {toDoList}
+              editToDo = {editToDo}
               removeToDo = {removeToDo}
             />  
           </body>
